@@ -27,5 +27,6 @@ end
 add_template_repository_to_source_path
 
 after_bundle do
+  puts File.expand_path
   apply 'templates/devise/template.rb'
 end
