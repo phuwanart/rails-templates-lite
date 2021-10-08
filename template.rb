@@ -28,13 +28,6 @@ end
 add_template_repository_to_source_path
 
 after_bundle do
-  # apply with local and remote, can't "defined?(Turbo)"
   # apply 'templates/devise/template.rb'
-
-  # puts find_in_source_paths("templates/devise/template.rb")
-  # remote, can "defined?(Turbo)"
   rails_command "app:template LOCATION=#{find_in_source_paths("templates/devise/template.rb")}"
-  
-  # local, can "defined?(Turbo)"
-  # rails_command "app:template LOCATION=#{File.expand_path("templates/devise/template.rb",  __dir__)}"
 end
