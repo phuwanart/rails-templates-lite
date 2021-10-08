@@ -1,6 +1,18 @@
 source_paths.unshift(__dir__)
 
-gem 'devise', github: 'strobilomyces/devise', branch: 'patch-1'
+def rails_version
+  @rails_version ||= Gem::Version.new(Rails::VERSION::STRING)
+end
+
+def rails_7?
+  Gem::Requirement.new('>= 7.0.0.alpha', '< 8.0.0.alpha').satisfied_by? rails_version
+end
+
+if rails_7?
+  gem 'devise', github: 'strobilomyces/devise', branch: 'patch-1'
+else
+  gem 'devise'
+end
 
 Bundler.with_unbundled_env { run 'bundle install' }
 
@@ -12,5 +24,3 @@ if defined?(Turbo)
 else
   say %(        Add <%= stylesheet_link_tag "application" %> within the <head> tag in your custom layout.)
 end
-
-copy_file 'Procfile', force: true
