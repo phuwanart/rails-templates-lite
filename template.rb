@@ -8,7 +8,7 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("rails-template-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-templates-lite"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
